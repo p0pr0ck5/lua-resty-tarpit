@@ -28,7 +28,7 @@ local function _step_down(premature, key, reset)
 	if (t.state > 0) then ngx.timer.at(reset, _step_down, key, reset) end
 end
 
--- requests: how many requests can be sent before the delay is increased
+-- request_limit: how many requests can be sent before the delay is increased
 -- reset: how long in seconds until the state is reset
 -- delay: initial time to stall the request
 function _M.tarpit(request_limit, reset, delay)
@@ -43,6 +43,7 @@ function _M.tarpit(request_limit, reset, delay)
 		ngx.exit(ngx.OK) -- silently bail if the user hasn't setup the tarpit shm
 	end
 
+	-- TODO: look into lua-resty-lock
 	local t = {}
 	local res = tarpit:get(key)
 

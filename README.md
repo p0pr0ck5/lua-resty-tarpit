@@ -1,6 +1,5 @@
 ##Name
 
-FreeWAF - Non-blocking WAF built on the OpenResty stack
 lua-resty-tarpit - capture and delay unwanted requests
 
 ##Status
@@ -9,7 +8,7 @@ lua-resty-tarpit is in early development and is considered production ready.
 
 ##Description
 
-lua-resty-tarpit provides rate-limit protection for sensitive resources. It leverages Nginx's non-blocking archtitecture to artificially increase response latency for resources that are repeatedly accessed. This functionality is designed to protect resources are publicly accessible, but vulnerable to some form of brute-force attack (e.g., web application admnistrative login pages). It was inspired by the TARPIT iptables module.
+lua-resty-tarpit provides rate-limit protection for sensitive resources. It leverages Nginx's non-blocking archtitecture to artificially increase response latency for resources that are repeatedly accessed. This functionality is designed to protect resources that are publicly accessible, but vulnerable to some form of brute-force attack (e.g., web application admnistrative login pages). It was inspired by the TARPIT iptables module.
 
 ##Installation
 
