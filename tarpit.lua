@@ -31,8 +31,7 @@ end
 -- requests: how many requests can be sent before the delay is increased
 -- reset: how long in seconds until the state is reset
 -- delay: initial time to stall the request
--- factor: delay increase rate
-function _M.tarpit(request_limit, reset, delay, factor)
+function _M.tarpit(request_limit, reset, delay)
 	ngx.update_time()
 	local _to_tarpit = false
 	local tarpit = ngx.shared.tarpit
@@ -62,7 +61,6 @@ function _M.tarpit(request_limit, reset, delay, factor)
 
 	-- figure out if we need to tarpit this request
 	if (t.staterequests > request_limit or t.state > 0) then
-		t.statestart = ngx.now() -- prevent the state from on -every- interval
 		_to_tarpit = true
 	end
 
@@ -78,7 +76,7 @@ function _M.tarpit(request_limit, reset, delay, factor)
 	-- save it up and send em to the grave
 	tarpit:set(client .. ":" .. resource, cjson.encode(t))
 	if (_to_tarpit) then
-		_do_tarpit(delay * t.state * factor)
+		_do_tarpit(delay * t.state)
 	end
 end
 

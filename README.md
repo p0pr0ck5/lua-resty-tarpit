@@ -29,8 +29,8 @@ Clone the lua-resty-tarpit repo into Nginx/OpenResty's Lua package path. Module 
 				t.tarpit(
 					5, -- request limit
 					5, -- reset timer
-					1, -- how long requests should be delayed
-					1, -- multiplicative factor to increase delay rate
+					1, -- delay time
+				)
 			';
 		}
 	}
