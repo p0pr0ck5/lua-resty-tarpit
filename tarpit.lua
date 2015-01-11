@@ -68,6 +68,7 @@ function _M.tarpit(request_limit, reset, delay)
 	-- do we need to bump states?
 	if (t.staterequests > request_limit) then
 		t.state = t.state + 1
+		t.statestart = ngx.now()
 		t.staterequests = 0
 		-- start the state decrement counter
 		-- we only need this to run after the first state bump
