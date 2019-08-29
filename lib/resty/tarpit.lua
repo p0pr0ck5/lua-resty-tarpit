@@ -31,11 +31,11 @@ end
 -- request_limit: how many requests can be sent before the delay is increased
 -- reset: how long in seconds until the state is reset
 -- delay: initial time to stall the request
-function _M.tarpit(request_limit, reset, delay)
+function _M.tarpit(request_limit, reset, delay, identifier)
 	ngx.update_time()
 	local _to_tarpit = false
 	local tarpit = ngx.shared.tarpit
-	local client = ngx.var.remote_addr
+	local client = identifier or ngx.var.remote_addr
 	local resource = ngx.var.uri
 	local key = client .. ":" .. resource
 
