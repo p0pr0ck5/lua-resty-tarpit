@@ -6,7 +6,7 @@ _M.version = "0.1"
 
 local function _do_tarpit(t)
 	ngx.sleep(t)
-	ngx.exit(418) -- teapot, tarpit, same thing
+	ngx.exit(429) -- Too Many Requests
 end
 
 local function _step_down(premature, key, reset)
